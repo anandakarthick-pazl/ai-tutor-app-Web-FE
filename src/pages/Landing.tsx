@@ -147,6 +147,20 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
+// Play Store icon component
+const PlayStoreIcon = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/>
+  </svg>
+);
+
+// App Store icon component
+const AppStoreIcon = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+    <path d="M11.624 7.222c-.876 0-2.232-.996-3.66-.96-1.884.024-3.612 1.092-4.584 2.784-1.956 3.396-.504 8.412 1.404 11.172.936 1.344 2.04 2.856 3.504 2.808 1.404-.06 1.932-.912 3.636-.912 1.692 0 2.172.912 3.66.876 1.512-.024 2.472-1.368 3.396-2.724 1.068-1.56 1.512-3.072 1.536-3.156-.036-.012-2.94-1.128-2.976-4.488-.024-2.808 2.292-4.152 2.4-4.212-1.32-1.932-3.348-2.148-4.056-2.196-1.848-.144-3.396 1.008-4.26 1.008zm3.12-2.832c.78-.936 1.296-2.244 1.152-3.54-1.116.048-2.46.744-3.264 1.68-.72.828-1.344 2.16-1.176 3.432 1.236.096 2.508-.636 3.288-1.572z"/>
+  </svg>
+);
+
 export function Landing() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -377,6 +391,45 @@ export function Landing() {
                 Watch Demo
               </button>
             </div>
+            
+            {/* App Download Buttons */}
+            {(settings.playStoreUrl || settings.appStoreUrl) && (
+              <div className="app-download-buttons">
+                <span className="download-label">Download our app:</span>
+                <div className="store-buttons">
+                  {settings.playStoreUrl && (
+                    <a 
+                      href={settings.playStoreUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="store-btn android"
+                      title="Download on Google Play"
+                    >
+                      <PlayStoreIcon />
+                      <div className="store-btn-text">
+                        <span className="store-btn-label">GET IT ON</span>
+                        <span className="store-btn-name">Google Play</span>
+                      </div>
+                    </a>
+                  )}
+                  {settings.appStoreUrl && (
+                    <a 
+                      href={settings.appStoreUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="store-btn ios"
+                      title="Download on App Store"
+                    >
+                      <AppStoreIcon />
+                      <div className="store-btn-text">
+                        <span className="store-btn-label">Download on the</span>
+                        <span className="store-btn-name">App Store</span>
+                      </div>
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="hero-visual">
@@ -669,6 +722,44 @@ export function Landing() {
                 <ArrowRight size={20} />
               </Link>
             </div>
+            
+            {/* App Store Buttons in CTA */}
+            {(settings.playStoreUrl || settings.appStoreUrl) && (
+              <div className="cta-store-buttons">
+                <span>Or download our app:</span>
+                <div className="store-buttons">
+                  {settings.playStoreUrl && (
+                    <a 
+                      href={settings.playStoreUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="store-btn android"
+                    >
+                      <PlayStoreIcon />
+                      <div className="store-btn-text">
+                        <span className="store-btn-label">GET IT ON</span>
+                        <span className="store-btn-name">Google Play</span>
+                      </div>
+                    </a>
+                  )}
+                  {settings.appStoreUrl && (
+                    <a 
+                      href={settings.appStoreUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="store-btn ios"
+                    >
+                      <AppStoreIcon />
+                      <div className="store-btn-text">
+                        <span className="store-btn-label">Download on the</span>
+                        <span className="store-btn-name">App Store</span>
+                      </div>
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
+            
             <div className="cta-trust">
               <Shield size={20} />
               <span>No credit card required • Cancel anytime</span>
