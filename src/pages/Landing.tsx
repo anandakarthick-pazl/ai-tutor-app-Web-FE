@@ -10,7 +10,6 @@ import {
   FileText,
   Calendar,
   Trophy,
-  Tv,
   ArrowRight,
   Check,
   Star,
@@ -53,6 +52,9 @@ import {
   MessageSquare,
   Headphones,
   Send,
+  UploadCloud,
+  Camera,
+  ScanLine,
 } from 'lucide-react';
 import { subscriptionApi } from '../services/api';
 import { useSettings } from '../context/SettingsContext';
@@ -61,40 +63,40 @@ import './Landing.css';
 
 const features = [
   {
-    icon: Brain,
-    title: 'AI-Powered Teaching',
-    description: 'Personalized lessons that adapt to your learning style and pace',
+    icon: UploadCloud,
+    title: 'Upload Your Homework',
+    description: 'Snap a photo or upload any homework question and Viha AI shows you exactly how to solve it, step by step',
     color: '#F97316',
+  },
+  {
+    icon: Brain,
+    title: 'Viha AI Teaches You',
+    description: 'Your personal AI tutor explains every concept in simple language, adapting to your class, board and pace',
+    color: '#6366F1',
   },
   {
     icon: MessageCircle,
     title: 'Instant Doubt Resolution',
-    description: 'Ask questions anytime and get detailed explanations within seconds',
+    description: 'Stuck on a question? Ask anytime and get a clear, easy-to-understand explanation within seconds',
     color: '#3B82F6',
   },
   {
     icon: FileText,
     title: 'Smart Quizzes',
-    description: 'AI-generated quizzes that test your understanding effectively',
+    description: 'AI-generated quizzes from your homework topics that test and strengthen your understanding',
     color: '#22C55E',
   },
   {
     icon: Calendar,
     title: 'Study Planner',
-    description: 'Personalized study plans based on your goals and schedule',
+    description: 'Personalized study plans based on your goals, weak areas and daily schedule',
     color: '#8B5CF6',
   },
   {
     icon: Trophy,
     title: 'Gamified Learning',
-    description: 'Earn XP, maintain streaks, and compete on leaderboards',
+    description: 'Earn XP, maintain daily streaks, and climb the leaderboard as you finish your homework',
     color: '#F59E0B',
-  },
-  {
-    icon: Tv,
-    title: 'Screen Casting',
-    description: 'Cast lessons to TV for a better learning experience',
-    color: '#14B8A6',
   },
 ];
 
@@ -134,10 +136,10 @@ const testimonials = [
 ];
 
 const steps = [
-  { number: '01', title: 'Sign Up', description: 'Create your free account in seconds', icon: Users },
-  { number: '02', title: 'Choose Subject', description: 'Select from CBSE, ICSE, or State boards', icon: BookOpen },
-  { number: '03', title: 'Start Learning', description: 'Get personalized AI-powered lessons', icon: Lightbulb },
-  { number: '04', title: 'Track Progress', description: 'Monitor your improvement daily', icon: BarChart3 },
+  { number: '01', title: 'Upload Your Homework', description: 'Snap a photo or upload your homework question in seconds', icon: UploadCloud },
+  { number: '02', title: 'Viha AI Teaches You', description: 'Get a clear, step-by-step explanation in simple language', icon: Brain },
+  { number: '03', title: 'Practice & Master', description: 'Reinforce every concept with smart quizzes and guided lessons', icon: Lightbulb },
+  { number: '04', title: 'Track Progress', description: 'Watch your scores and confidence grow every day', icon: BarChart3 },
 ];
 
 // WhatsApp icon component
@@ -322,6 +324,7 @@ export function Landing() {
           </Link>
 
           <div className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+            <a href="#homework" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Homework Help</a>
             <a href="#features" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Features</a>
             <a href="#how-it-works" className="nav-link" onClick={() => setMobileMenuOpen(false)}>How it Works</a>
             <a href="#subjects" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Subjects</a>
@@ -356,14 +359,16 @@ export function Landing() {
           <div className="hero-content">
             <div className="hero-badge">
               <Sparkles size={16} />
-              <span>AI-Powered Education Platform</span>
+              <span>AI Homework Help &amp; Personal Tutor</span>
             </div>
             <h1>
-              Learn Smarter with <span className="gradient-text">{settings.siteName}</span>
+              Upload Your Homework.<br />
+              <span className="gradient-text">{settings.siteName} Teaches You.</span>
             </h1>
             <p className="hero-description">
-              Experience personalized education that adapts to your learning style.
-              Get instant doubt resolution, smart quizzes, and track your progress - all powered by AI.
+              Just snap a photo or upload any homework question and {settings.siteName} explains
+              how to solve it &mdash; step by step, in simple language. Plus instant doubt solving,
+              smart quizzes, and progress tracking, all powered by AI.
             </p>
             <div className="hero-stats">
               <div className="hero-stat">
@@ -499,6 +504,40 @@ export function Landing() {
                 <span className="card-value">92%</span>
                 <span className="card-label">Accuracy</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Homework Help Section */}
+      <section id="homework" className="features">
+        <div className="section-container">
+          <div className="section-header">
+            <span className="section-badge">Homework Help</span>
+            <h2>Homework, Solved &amp; Explained</h2>
+            <p>Don't just get the answer &mdash; understand it. {settings.siteName} turns every homework question into a lesson.</p>
+          </div>
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon" style={{ background: '#F9731615', color: '#F97316' }}>
+                <Camera size={28} />
+              </div>
+              <h3>1. Snap or Upload</h3>
+              <p>Take a photo of any question &mdash; typed or handwritten &mdash; or upload it from your device.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon" style={{ background: '#6366F115', color: '#6366F1' }}>
+                <ScanLine size={28} />
+              </div>
+              <h3>2. Viha AI Reads &amp; Solves</h3>
+              <p>{settings.siteName} understands the question and works out the complete, correct solution for you.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon" style={{ background: '#22C55E15', color: '#22C55E' }}>
+                <GraduationCap size={28} />
+              </div>
+              <h3>3. Learn the Method</h3>
+              <p>Every step is explained in simple language so you can confidently solve the next one on your own.</p>
             </div>
           </div>
         </div>
